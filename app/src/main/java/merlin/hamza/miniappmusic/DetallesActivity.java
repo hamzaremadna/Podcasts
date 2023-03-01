@@ -135,12 +135,13 @@ public class DetallesActivity extends AppCompatActivity implements OnEpisodeitem
                             e.printStackTrace();
                         }
                         String duration = episodeObj.getString("trackTimeMillis");
+                        String dur = duration;
                         duration = String.format(Locale.getDefault(), "%d H %02d MN",
                                 TimeUnit.MILLISECONDS.toHours(Long.parseLong(duration)),
                                 TimeUnit.MILLISECONDS.toMinutes(Long.parseLong(duration)) -
                                         TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(Long.parseLong(duration))));
 
-                        PodcastEpisode episode = new PodcastEpisode(title, releaseDate, duration,Urlpod);
+                        PodcastEpisode episode = new PodcastEpisode(title, releaseDate, duration,Urlpod,dur);
                         episodeList.add(episode);
                     }
 
@@ -176,12 +177,13 @@ public class DetallesActivity extends AppCompatActivity implements OnEpisodeitem
                     e.printStackTrace();
                 }
                 String duration = episodeObj.getString("trackTimeMillis");
+                String dur = duration;
                 duration = String.format(Locale.getDefault(), "%d H %02d MN",
                         TimeUnit.MILLISECONDS.toHours(Long.parseLong(duration)),
                         TimeUnit.MILLISECONDS.toMinutes(Long.parseLong(duration)) -
                                 TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(Long.parseLong(duration))));
 
-                PodcastEpisode episode = new PodcastEpisode(title, releaseDate, duration,Urlpod);
+                PodcastEpisode episode = new PodcastEpisode(title, releaseDate, duration,Urlpod,dur);
                 episodeList.add(episode);
             }
 
@@ -215,7 +217,7 @@ public class DetallesActivity extends AppCompatActivity implements OnEpisodeitem
         intent.putExtra(DetallesCapituloActivity.EXTRA_PODCAST_URL, episode.getPubUrl());
 
         intent.putExtra(DetallesCapituloActivity.EXTRA_RELEASE_DATE, episode.getPubDate());
-        intent.putExtra(DetallesCapituloActivity.EXTRA_DURATION, episode.getDuration());
+        intent.putExtra(DetallesCapituloActivity.EXTRA_DURATION, episode.getDur());
         startActivity(intent);
     }
 }

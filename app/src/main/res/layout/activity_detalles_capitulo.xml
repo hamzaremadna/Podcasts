@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="#F9F9F9"
+    android:theme="@style/Theme.MiniAppMusic"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".DetallesCapituloActivity">
@@ -39,7 +39,6 @@
         android:paddingTop="16dp"
         android:paddingBottom="8dp"
         android:text="Podcast Title"
-        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -49,7 +48,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
         android:text="Podcast Author"
-        android:textColor="@color/gray_dark"
         android:textSize="14sp" />
 
     <ScrollView
@@ -63,7 +61,6 @@
             android:maxLines="6"
             android:paddingBottom="16dp"
             android:text="Podcast Description"
-            android:textColor="@color/black"
             android:textSize="16sp" />
 
     </ScrollView>
@@ -85,10 +82,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="00:00"
+            android:text="00:00:00"
 
-            android:padding="8dp"
-            android:textColor="@color/black"/>
+            android:padding="8dp" />
 
         <View
             android:layout_width="0dp"
@@ -100,10 +96,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="00:00"
+            android:text="00:00:00"
 
             android:padding="8dp"
-            android:textColor="@color/black"/>
+       />
     </LinearLayout>
 
     <LinearLayout

@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Day mode -->
     <style name="Theme.MiniAppMusic" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#F2F2F7</item>
         <item name="colorPrimaryVariant">#D9D9DE</item>
@@ -10,5 +11,19 @@
         <item name="android:textColorPrimary">#000000</item>
         <item name="android:textColorSecondary">#8E8E93</item>
         <item name="android:navigationBarColor">#F2F2F7</item>
+    </style>
+
+    <!-- Night mode -->
+    <style name="Theme.MiniAppMusic.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#212121</item>
+        <item name="colorPrimaryVariant">#484848</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#2979FF</item>
+        <item name="colorSecondaryVariant">#2962FF</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:statusBarColor">#212121</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#8E8E93</item>
+        <item name="android:navigationBarColor">#212121</item>
     </style>
 </resources>

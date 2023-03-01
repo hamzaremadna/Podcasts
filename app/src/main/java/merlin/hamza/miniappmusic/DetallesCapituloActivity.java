@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +17,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 
 public class DetallesCapituloActivity extends AppCompatActivity {
 
@@ -71,16 +72,18 @@ public class DetallesCapituloActivity extends AppCompatActivity {
         podcastUrl = intent.getStringExtra(EXTRA_PODCAST_URL);
         initializeMediaPlayer();
         titleTextView.setText(title);
-        durationTextView.setText(duration);
+        durationTextView.setText(formatTime(duration));
         Picasso.get().load(imageUrl).into(imageView);
         authorTextView.setText(author);
         descriptionTextView.setText(description);
 
         titleTextView.setOnClickListener(v -> {
+            mediaPlayer.release();
             finish();
         });
 
         imageView.setOnClickListener(v -> {
+            mediaPlayer.release();
             finish();
         });
         initializeMediaPlayer();
@@ -154,6 +157,11 @@ public class DetallesCapituloActivity extends AppCompatActivity {
     private void updateSeekBar() {
         seekBar.setProgress(mediaPlayer.getCurrentPosition());
         if (mediaPlayer.isPlaying()) {
+            int progress = mediaPlayer.getCurrentPosition() / 1000;
+            int hours = progress / 3600;
+            int minutes = (progress % 3600) / 60;
+            int seconds = progress % 60;
+            progressTextView.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
@@ -164,6 +172,14 @@ public class DetallesCapituloActivity extends AppCompatActivity {
         }
     }
 
+    public String formatTime(String timeInSeconds) {
+        int secondstime = Integer.parseInt(timeInSeconds);
+        long hours = TimeUnit.MILLISECONDS.toHours(secondstime);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(secondstime) % 60;
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(secondstime) % 60;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -171,14 +187,9 @@ public class DetallesCapituloActivity extends AppCompatActivity {
             mediaPlayer.release();
             mediaPlayer = null;
         }
-    }
-
-
-    private String formatTime(int millis) {
-        int seconds = millis / 1000;
-        int minutes = seconds / 60;
-        seconds %= 60;
-        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
     }
 
 }

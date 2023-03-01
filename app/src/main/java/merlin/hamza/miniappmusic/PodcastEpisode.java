@@ -5,14 +5,16 @@ public class PodcastEpisode {
     private String pubDate;
     private String duration;
     private String pubUrl;
+    private String dur;
 
 
 
-    public PodcastEpisode(String title, String pubDate, String duration,String pubUrl) {
+    public PodcastEpisode(String title, String pubDate, String duration,String pubUrl,String dur) {
         this.title = title;
         this.pubDate = pubDate;
         this.duration = duration;
         this.pubUrl = pubUrl;
+        this.dur = dur;
 
     }
 
@@ -21,6 +23,11 @@ public class PodcastEpisode {
     }
     public String getPubUrl() {
         return pubUrl;
+    }
+    public String getDur(){return dur; }
+
+    public void setDur(String dur) {
+        this.dur = dur;
     }
 
     public void setPubUrl(String pubUrl) {
